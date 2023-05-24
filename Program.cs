@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RecipeApp.Data;
+using RecipeApp.Models;
 
 namespace RecipeApp
 {
@@ -11,8 +12,10 @@ namespace RecipeApp
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            var connectionString = "Server=.\\SQLEXPRESS;Database=RecipeApp;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=true";
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString));
+            builder.Services.AddDbContext<RecipeAppContext>(options =>
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
