@@ -10,7 +10,7 @@ namespace RecipeApp
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            
             // Add services to the container.
             var connectionString = "Server=.\\SQLEXPRESS;Database=RecipeApp;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=true";
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
