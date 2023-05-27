@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,8 +23,11 @@ namespace RecipeApp.Pages.Recipe
 
         public IList<Models.Recipe> Recipe { get;set; } = default!;
 
+        public string userId { get; set; }
+
         public async Task OnGetAsync()
         {
+            userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (_context.Recipes != null)
             {
                 Recipe = await _context.Recipes.ToListAsync();

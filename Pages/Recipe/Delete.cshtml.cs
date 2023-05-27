@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -19,7 +20,8 @@ namespace RecipeApp.Pages.Recipe
         }
 
         [BindProperty]
-      public Models.Recipe Recipe { get; set; } = default!;
+        public Models.Recipe Recipe { get; set; } = default!;
+        public string userId { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -43,17 +45,21 @@ namespace RecipeApp.Pages.Recipe
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
+            userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (id == null || _context.Recipes == null)
             {
                 return NotFound();
             }
-            var recipe = await _context.Recipes.FindAsync(id);
+            if (Recipe.UserId == userId)
+            { 
+                var recipe = await _context.Recipes.FindAsync(id);
 
-            if (recipe != null)
-            {
-                Recipe = recipe;
-                _context.Recipes.Remove(Recipe);
-                await _context.SaveChangesAsync();
+                if (recipe != null)
+                {
+                    Recipe = recipe;
+                    _context.Recipes.Remove(Recipe);
+                    await _context.SaveChangesAsync();
+                }
             }
 
             return RedirectToPage("./Index");

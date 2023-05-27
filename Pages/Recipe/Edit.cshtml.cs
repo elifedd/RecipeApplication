@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +25,8 @@ namespace RecipeApp.Pages.Recipe
         [BindProperty]
         public Models.Recipe Recipe { get; set; } = default!;
 
+        public string userId { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null || _context.Recipes == null)
@@ -44,26 +47,31 @@ namespace RecipeApp.Pages.Recipe
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Attach(Recipe).State = EntityState.Modified;
-
-            try
+            if (Recipe.UserId == userId)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RecipeExists(Recipe.RecipeId))
+                _context.Attach(Recipe).State = EntityState.Modified;
+                try
                 {
-                    return NotFound();
+                    await _context.SaveChangesAsync();
                 }
-                else
+                catch (DbUpdateConcurrencyException)
                 {
-                    throw;
+                    if (!RecipeExists(Recipe.RecipeId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
 
