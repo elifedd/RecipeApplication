@@ -37,9 +37,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Recipe[0].Servings)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Recipe[0].UserId)
-            </th>
+            @* <th>
+            @Html.DisplayNameFor(model => model.Recipe[0].UserId)
+            </th> *@
             <th></th>
         </tr>
     </thead>
@@ -70,9 +70,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Servings)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.UserId)
+            </td>*@
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.RecipeId">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.RecipeId">Details</a> |

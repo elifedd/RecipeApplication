@@ -54,8 +54,8 @@
                 <span asp-validation-for="Recipe.Servings" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Recipe.UserId" class="control-label"></label>
-                <input asp-for="Recipe.UserId" class="form-control" />
+                @*<label asp-for="Recipe.UserId" class="control-label"></label>*@
+                <input type="hidden" asp-for="Recipe.UserId" class="form-control" />
                 <span asp-validation-for="Recipe.UserId" class="text-danger"></span>
             </div>
             <div class="form-group">
