@@ -25,12 +25,23 @@ namespace RecipeApp.Pages.Recipe
 
         public string userId { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public string SearchString { get; set; }
+
         public async Task OnGetAsync()
         {
             userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             if (_context.Recipes != null)
             {
-                Recipe = await _context.Recipes.ToListAsync();
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    Recipe = await _context.Recipes.Where(s => s.Title.Contains(SearchString)).ToListAsync();
+                }
+                else
+                {
+                    Recipe = await _context.Recipes.ToListAsync();
+                }
             }
         }
     }
