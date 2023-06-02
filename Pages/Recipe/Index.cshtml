@@ -15,83 +15,17 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Recipe[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Recipe[0].Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Recipe[0].ImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Recipe[0].Cuisine)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Recipe[0].DifficultyLevel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Recipe[0].PreparationTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Recipe[0].CookingTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Recipe[0].Servings)
-            </th>
-            @* <th>
-            @Html.DisplayNameFor(model => model.Recipe[0].UserId)
-            </th> *@
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Recipe) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cuisine)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DifficultyLevel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PreparationTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CookingTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Servings)
-            </td>
-                @*<td>
-            @Html.DisplayFor(modelItem => item.UserId)
-            </td>*@
-            <td>
-                    @if (item.UserId != Model.userId)
-                    {
-                        <a asp-page="./Details" asp-route-id="@item.RecipeId">Details</a>
-                    } 
-                    else 
-                    {
-                        <a asp-page="./Edit" asp-route-id="@item.RecipeId">Edit</a>
-                        <a asp-page="./Details" asp-route-id = "@item.RecipeId">Details</a> 
-                        <a asp-page="./Delete" asp-route-id = "@item.RecipeId">Delete</a>
-                        <a asp-page="../Comment/Create" asp-route-id="@item.RecipeId">Add comment</a>
-                    }
-            </td>
-        </tr>
+@foreach (var item in Model.Recipe)
+{
+    <div class="card" style="width: 18rem;">
+        <img src="/images/profile1.png" class="card-img-top" alt="recipe image">
+        <div class="card-body">
+            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+            <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+            <a class="btn btn-primary btn-sm"  asp-page="./Edit" asp-route-id="@item.RecipeId">Edit</a>
+            <a class="btn btn-success btn-sm" asp-page="./Details" asp-route-id="@item.RecipeId">Details</a>
+            <a class="btn btn-danger btn-sm" asp-page="./Delete" asp-route-id="@item.RecipeId">Delete</a>
+        </div>
+    </div>
 }
-    </tbody>
-</table>
+
