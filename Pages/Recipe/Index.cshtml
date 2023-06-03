@@ -5,28 +5,36 @@
     ViewData["Title"] = "Index";
 }
 
+<link href="~/css/recipe.css" rel="stylesheet" />
+
 <h1>Index</h1>
 <form>
     <p>
         Title: <input type="text" asp-for="SearchString" />
-        <input type="submit" value="Filter " />
+        <input class="btn btn-outline-secondary btn-sm" type="submit" value="Filter " />
     </p>
 </form>
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+<div class="card-container d-flex flex-row flex-wrap justify-content-center gap-3">
 @foreach (var item in Model.Recipe)
 {
     <div class="card" style="width: 18rem;">
-        <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" class="card-img-top" alt="recipe image">
-        <div class="card-body">
-            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
-            <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
-            <a class="btn btn-primary btn-sm"  asp-page="./Edit" asp-route-id="@item.RecipeId">Edit</a>
-            <a class="btn btn-success btn-sm" asp-page="./Details" asp-route-id="@item.RecipeId">Details</a>
-            <a class="btn btn-danger btn-sm" asp-page="./Delete" asp-route-id="@item.RecipeId">Delete</a>
-            <a class="btn btn-light btn-sm" asp-page="/Rate" asp-route-id="@item.RecipeId">Rate</a>
+            <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" class="h-50 card-img-top object-fit-cover border rounded" alt="recipe image">
+            <div class="card-body d-flex flex-column justify-content-between">
+            <div class="card-text-box">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+            </div>
+            <div class="card-nav-box d-flex gap-1">
+                    <a class="btn btn-outline-primary btn-sm flex-grow-1 flex-shrink-1" asp-page="./Edit" asp-route-id="@item.RecipeId">Edit</a>
+                    <a class="btn btn-outline-success btn-sm flex-grow-1 flex-shrink-1" asp-page="./Details" asp-route-id="@item.RecipeId">Details</a>
+                    <a class="btn btn-outline-danger btn-sm flex-grow-1 flex-shrink-1" asp-page="./Delete" asp-route-id="@item.RecipeId">Delete</a>
+                    <a class="btn btn-outline-info btn-sm flex-grow-1 flex-shrink-1" asp-page="/Rate" asp-route-id="@item.RecipeId">Rate</a>
+            </div>
         </div>
     </div>
 }
+</div>
 
