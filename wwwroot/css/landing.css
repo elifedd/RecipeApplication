@@ -1,0 +1,38 @@
+.main-content {
+    max-width: 1320px;
+}
+
+.main-content-image {
+    object-fit: scale-down;
+}
+
+.main-content-header {
+    align-self: center;
+    font-weight: 600;
+}
+
+.main-content-text > p {
+    font-size: 1.2rem;
+}
+
+@media screen and (max-width: 900px) {
+    .main-content {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .main-content-image, .main-content-text {
+        width: 80% !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .main-content-image, .main-content-text {
+        width: 100% !important;
+    }
+
+    .main-content-image {
+        padding: 0!important;
+    }
+}
