@@ -18,13 +18,14 @@
 @foreach (var item in Model.Recipe)
 {
     <div class="card" style="width: 18rem;">
-        <img src="/images/profile1.png" class="card-img-top" alt="recipe image">
+        <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" class="card-img-top" alt="recipe image">
         <div class="card-body">
             <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
             <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
             <a class="btn btn-primary btn-sm"  asp-page="./Edit" asp-route-id="@item.RecipeId">Edit</a>
             <a class="btn btn-success btn-sm" asp-page="./Details" asp-route-id="@item.RecipeId">Details</a>
             <a class="btn btn-danger btn-sm" asp-page="./Delete" asp-route-id="@item.RecipeId">Delete</a>
+            <a class="btn btn-light btn-sm" asp-page="/Rate" asp-route-id="@item.RecipeId">Rate</a>
         </div>
     </div>
 }

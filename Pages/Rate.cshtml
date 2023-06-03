@@ -1,0 +1,30 @@
+﻿@page "{id}"
+@model RecipeApp.Pages.RateModel
+@{
+    ViewData["Title"] = "Rate Recipe";
+}
+
+<link href="~/css/jquery.rateyo.min.css" rel="stylesheet" />
+
+<form method="post">
+    <div id="rateIt"></div>
+    <div>
+        <button type="submit" class="btn btn-primary" id="getRating">Rate it!</button>
+        <input name="_rate" type="hidden" id="rating" />
+    </div>
+</form>
+
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/jquery.rateyo.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        var $rateYo = $("#rateIt").rateYo({
+			rating: 0,
+			fullStar: true,
+            onChange: function (rating, rateYoInstance) {
+				$("#rating").val(rating);
+			}
+		});
+	});
+</script>
