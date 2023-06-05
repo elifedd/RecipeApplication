@@ -3,6 +3,8 @@
 
 @{
     ViewData["Title"] = "Index";
+    int i = 0;
+    string rate = "";
 }
 
 <link href="~/css/recipe.css" rel="stylesheet" />
@@ -26,6 +28,19 @@
             <div class="card-text-box">
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
                 <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                <p>
+                    @if (Model.RecipeAverageRatingList[i] == 0.0)
+                    {
+                        rate = "No ratings yet";
+                        i++;
+                    }
+                    else 
+                    {
+                        rate = "Avarage rating: " + Model.RecipeAverageRatingList[i].ToString() + " out of 5";
+                        i++;
+                    }
+                    @rate
+                </p>
             </div>
             <div class="card-nav-box d-flex gap-1">
                     <a class="btn btn-outline-primary btn-sm flex-grow-1 flex-shrink-1" asp-page="./Edit" asp-route-id="@item.RecipeId">Edit</a>
