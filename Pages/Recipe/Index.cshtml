@@ -28,10 +28,10 @@
                 <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
             </div>
             <div class="card-nav-box d-flex gap-1">
-                <a class="btn btn-outline-primary btn-sm flex-grow-1 flex-shrink-1" asp-page="./Edit" asp-route-id="@item.RecipeId">Edit</a>
-                <a class="btn btn-outline-success btn-sm flex-grow-1 flex-shrink-1" asp-page="./Details" asp-route-id="@item.RecipeId">Details</a>
-                <a class="btn btn-outline-danger btn-sm flex-grow-1 flex-shrink-1" asp-page="./Delete" asp-route-id="@item.RecipeId">Delete</a>
-                <a class="btn btn-outline-info btn-sm flex-grow-1 flex-shrink-1" asp-page="/Rate" asp-route-id="@item.RecipeId">Rate</a>
+                    <a class="btn btn-outline-primary btn-sm flex-grow-1 flex-shrink-1" asp-page="./Edit" asp-route-id="@item.RecipeId">Edit</a>
+                    <a class="btn btn-outline-success btn-sm flex-grow-1 flex-shrink-1" asp-page="./Details" asp-route-id="@item.RecipeId">Details</a>
+                    <a class="btn btn-outline-danger btn-sm flex-grow-1 flex-shrink-1" asp-page="./Delete" asp-route-id="@item.RecipeId">Delete</a>
+                    <a class="btn btn-outline-info btn-sm flex-grow-1 flex-shrink-1" asp-page="/Rate" asp-route-id="@item.RecipeId">Rate</a>
             </div>
         </div>
     </div>
