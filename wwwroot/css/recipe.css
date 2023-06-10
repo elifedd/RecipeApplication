@@ -2,11 +2,15 @@
     color: #fff;
 }
 
+.add-fav-btn {
+    border: none;
+    background-color: transparent;
+}
+
 .bi-suit-heart-fill {
     color: #fff;
     height: 1.5rem;
     width: 1.5rem;
-    cursor: pointer;
 }
 
 .card-title {

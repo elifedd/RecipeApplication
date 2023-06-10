@@ -26,3 +26,7 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.user-profile-img {
+    object-fit: cover;
+}

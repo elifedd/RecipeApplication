@@ -1,0 +1,16 @@
+﻿@page "{id}"
+@model RecipeApp.Pages.CommentModel
+
+
+<h2>Comments</h2>
+<ul>
+    @foreach (var comment in Model.Comments)
+    {
+        <li>@comment.Content</li>
+    }
+</ul>
+
+<form method="post">
+    <input type="text" name="_comment" />
+    <button class="btn btn-outline-primary btn-sm" type="submit">Add comment</button>
+</form>
