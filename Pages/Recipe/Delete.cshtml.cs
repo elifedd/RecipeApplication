@@ -67,8 +67,12 @@ namespace RecipeApp.Pages.Recipe
             {
                 var ratings = _context.Ratings.Where(r => r.RecipeId == id);
                 var comments = _context.Comments.Where(r => r.RecipeId == id);
+                var ingredients = _context.Ingredients.Where(r => r.RecipeId == id);
+                var directions = _context.Directions.Where(r => r.RecipeId == id);
                 _context.Ratings.RemoveRange(ratings);
                 _context.Comments.RemoveRange(comments);
+                _context.Ingredients.RemoveRange(ingredients);
+                _context.Directions.RemoveRange(directions);
 
                 // Add additional code to delete related records from other tables if needed
 

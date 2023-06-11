@@ -76,7 +76,8 @@
                 <a class="btn btn-outline-danger btn-sm flex-grow-1 flex-shrink-1" asp-page="./Delete" asp-route-id="@item.RecipeId">Delete</a>
                 <a class="btn btn-outline-info btn-sm flex-grow-1 flex-shrink-1" asp-page="/Rate" asp-route-id="@item.RecipeId">Rate</a>
             </div>
-                <a class="btn btn-outline-info btn-sm flex-grow-1 flex-shrink-1" asp-page="/Ingredient" asp-route-id="@item.RecipeId">Add ingredient</a>
+            <a class="btn btn-primary btn-sm" asp-page="/Ingredient" asp-route-id="@item.RecipeId">Add ingredient</a>
+            <a class="btn btn-primary btn-sm" asp-page="/Direction" asp-route-id="@item.RecipeId">Add direction</a>
         </div>
     </div>
 }
