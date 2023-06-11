@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using RecipeApp.Models;
 
 namespace RecipeApp.Pages.Recipe
 {
+    [Authorize]
     public class DeleteModel : PageModel
     {
         private readonly RecipeApp.Models.RecipeAppContext _context;
@@ -36,7 +38,7 @@ namespace RecipeApp.Pages.Recipe
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Recipe = recipe;
             }
@@ -50,19 +52,32 @@ namespace RecipeApp.Pages.Recipe
             {
                 return NotFound();
             }
-            if (Recipe.UserId == userId)
-            { 
-                var recipe = await _context.Recipes.FindAsync(id);
 
-                if (recipe != null)
-                {
-                    Recipe = recipe;
-                    _context.Recipes.Remove(Recipe);
-                    await _context.SaveChangesAsync();
-                }
+            var recipe = await _context.Recipes.FirstOrDefaultAsync(m => m.RecipeId == id);
+            if (recipe == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                Recipe = recipe;
+            }
+
+            if (Recipe.UserId == userId)
+            {
+                var ratings = _context.Ratings.Where(r => r.RecipeId == id);
+                var comments = _context.Comments.Where(r => r.RecipeId == id);
+                _context.Ratings.RemoveRange(ratings);
+                _context.Comments.RemoveRange(comments);
+
+                // Add additional code to delete related records from other tables if needed
+
+                _context.Recipes.Remove(Recipe);
+                await _context.SaveChangesAsync();
             }
 
             return RedirectToPage("./Index");
         }
+
     }
 }

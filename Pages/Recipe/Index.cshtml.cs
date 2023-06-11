@@ -29,7 +29,6 @@ namespace RecipeApp.Pages.Recipe
 
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
-
         public async Task CalculateRatings()
         {
             var AllRecipes = await (from re in _context.Recipes
@@ -67,13 +66,19 @@ namespace RecipeApp.Pages.Recipe
             {
                 if (!string.IsNullOrEmpty(SearchString))
                 {
-                    Recipe = await _context.Recipes.Where(s => s.Title.Contains(SearchString)).ToListAsync();
+                    Recipe = await _context.Recipes.Where(s => s.Title.Contains(SearchString.ToLower()) || 
+                                                    s.Description.ToLower().Contains(SearchString.ToLower()) || 
+                                                    s.Cuisine.ToLower().Contains(SearchString.ToLower()) || 
+                                                    s.Servings.ToString().Contains(SearchString) ||
+                                                    s.CookingTime.ToString().Contains(SearchString) ||
+                                                    s.PreparationTime.ToString().Contains(SearchString)
+                                                            ).ToListAsync();
                 }
                 else
                 {
-                    Recipe = await _context.Recipes.ToListAsync();
-                    await CalculateRatings();
+                    Recipe = await _context.Recipes.ToListAsync();                    
                 }
+                await CalculateRatings();
             }
         }
     }
