@@ -76,8 +76,17 @@
                 <a class="btn btn-outline-danger btn-sm flex-grow-1 flex-shrink-1" asp-page="./Delete" asp-route-id="@item.RecipeId">Delete</a>
                 <a class="btn btn-outline-info btn-sm flex-grow-1 flex-shrink-1" asp-page="/Rate" asp-route-id="@item.RecipeId">Rate</a>
             </div>
+                <a class="btn btn-outline-info btn-sm flex-grow-1 flex-shrink-1" asp-page="/Ingredient" asp-route-id="@item.RecipeId">Add ingredient</a>
         </div>
     </div>
 }
 </div>
+
+<script>
+    document.querySelectorAll('.bi-suit-heart-fill').forEach(item => {
+		item.addEventListener('click', event => {
+            item.classList.toggle("add-fav-btn-active");
+		})
+	})
+</script>
 

@@ -1,0 +1,19 @@
+﻿@page "{id}"
+@model RecipeApp.Pages.IngredientModel
+@{
+}
+
+<h2>Ingredients</h2>
+<ul>
+    @foreach (var ingredient in Model.Ingredients)
+    {
+        <li>@ingredient.Name @ingredient.Quantity @ingredient.Unit</li>
+    }
+</ul>
+
+<form method="post" class="d-flex flex-column w-50 gap-2">
+    Name: <input type="text" name="_name" />
+    Quantity: <input type="number" name="_quantity" />
+    Unit: <input type="text" name="_unit" />
+    <button class="btn btn-outline-primary btn-sm" type="submit">Add ingredient</button>
+</form>
