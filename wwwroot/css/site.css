@@ -8,12 +8,6 @@ html {
   font-size: 14px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
@@ -29,4 +23,53 @@ body {
 
 .user-profile-img {
     object-fit: cover;
+}
+
+.input-form, .crud-pages {
+    width: 40%;
+    background: aliceblue;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.crud-pages {
+    width: 100%;
+}
+
+.img-landing {
+    width: 50%;
+}
+
+.landing-btn {
+    border-radius: 10px;
+    background-color: #F2BE22;
+    color: #fff;
+}
+
+@media (max-width: 900px) {
+    .landing {
+        flex-direction: column !important;
+    }
+
+    .img-landing {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+#login-submit, #registerSubmit {
+    background-color: #F2BE22 !important;
+    border-color: #F2BE22 !important;
+}
+
+.user-comment-img {
+    height: 50px;
+    width: 50px;
+    background-color: transparent;
 }

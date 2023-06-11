@@ -1,16 +1,25 @@
 ﻿@page "{id}"
 @model RecipeApp.Pages.CommentModel
 
+<div class="crud-pages">
+    <h2>Comments</h2>
+    <ul class="list-group list-group-flush">
+        @foreach (var comment in Model.Comments)
+        {
+            <li class="d-flex w-100 gap-2 align-items-center list-group-item">
+                <img class="user-comment-img" src="~/images/default_user.png" />
+                @comment.Content
+            </li>
+        }
+    </ul>
 
-<h2>Comments</h2>
-<ul>
-    @foreach (var comment in Model.Comments)
-    {
-        <li>@comment.Content</li>
-    }
-</ul>
-
-<form method="post">
-    <input type="text" name="_comment" />
-    <button class="btn btn-outline-primary btn-sm" type="submit">Add comment</button>
-</form>
+    <form method="post" class="mt-2">
+        <div class="input-group mb-3">
+            <input type="text" name="_comment" class="form-control" placeholder="Add your comment here...">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Add comment</button>
+                <a class="btn btn-outline-secondary" asp-page="./Recipe/Index">Back to List</a>
+            </div>
+        </div>
+    </form>
+</div>

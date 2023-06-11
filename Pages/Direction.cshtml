@@ -5,15 +5,16 @@
 
 <h2>Directions</h2>
 
-<ul>
+<ul class="list-group list-group-flush">
     @foreach (var direction in Model.Directions)
     {
-        <li>@direction.StepNumber. @direction.Description</li>
+        <li class="list-group-item"><strong>@direction.StepNumber.</strong> @direction.Description</li>
     }
 </ul>
 
-<form method="post" class="d-flex flex-column w-50 gap-2">
+<form method="post" class="d-flex flex-column input-form gap-2">
     Step Number: <input type="number" name="_stepNumber" />
     Description: <input type="text" name="_description" />
     <button class="btn btn-outline-primary btn-sm" type="submit">Add direction</button>
+    <a class="btn btn-primary btn-sm" asp-page="./Recipe/Index">Back to List</a>
 </form>

@@ -4,16 +4,17 @@
 }
 
 <h2>Ingredients</h2>
-<ul>
+<ul class="list-group list-group-flush">
     @foreach (var ingredient in Model.Ingredients)
     {
-        <li>@ingredient.Name @ingredient.Quantity @ingredient.Unit</li>
+        <li class="list-group-item">@ingredient.Name @ingredient.Quantity @ingredient.Unit</li>
     }
 </ul>
 
-<form method="post" class="d-flex flex-column w-50 gap-2">
+<form method="post" class="d-flex flex-column input-form gap-2">
     Name: <input type="text" name="_name" />
     Quantity: <input type="number" name="_quantity" />
     Unit: <input type="text" name="_unit" />
-    <button class="btn btn-outline-primary btn-sm" type="submit">Add ingredient</button>
+    <button class="btn btn-outline-primary" type="submit">Add ingredient</button>
+    <a class="btn btn-primary" asp-page="./Recipe/Index">Back to List</a>
 </form>

@@ -6,11 +6,12 @@
 
 <link href="~/css/jquery.rateyo.min.css" rel="stylesheet" />
 
-<form method="post">
+<form method="post" class="d-flex align-content-center">
     <div id="rateIt"></div>
     <div>
-        <button type="submit" class="btn btn-primary" id="getRating">Rate it!</button>
-        <input name="_rate" type="hidden" id="rating" />
+        <button type="submit" class="btn btn-success" id="getRating">Rate it!</button>
+        <input name="_rate" type="hidden" id="rating" /> |
+        <a class="btn btn-primary" asp-page="./Recipe/Index">Back to List</a>
     </div>
 </form>
 
